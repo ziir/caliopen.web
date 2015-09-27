@@ -3,7 +3,7 @@ env: development
 frontend:
   rootPath: "/app/"
 api:
-  prefix: api
+  prefix: /api
   version: v1
   hostname: localhost
   port: 6543
