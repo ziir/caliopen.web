@@ -20,9 +20,24 @@ function signup(params) {
   );
 }
 
-// username, password, response, success, error
 function authenticate(params) {
+  if (!params || !(params.username && params.password)) {
+    throw new Error(
+      'Bad parameters: authenticate({' +
+        'username, password, [response], [success], [error]' +
+      '})'
+    );
+  }
+
   var config = this.config;
+
+  params.body = {
+    username: params.username + '',
+    password: params.password + ''
+  };
+
+  delete params.username;
+  delete params.password;
 
   return this.query(
     ObjectAssign({
