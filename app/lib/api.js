@@ -30,7 +30,7 @@ function query(params) {
     });
 
     res.on('end', function endCallback() {
-      if (res && res.statusCode > 200 && res.statusCode < 300) {
+      if (res && res.statusCode >= 200 && res.statusCode < 300) {
         !options.success || options.success(data);
       } else {
         !options.error || options.error(
