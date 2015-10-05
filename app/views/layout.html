@@ -1,8 +1,21 @@
 {% extends "base.html" %}
-    
+
 {% block head %}{% endblock %}
 
 {% block body %}
-  {% block content %}
-  {% endblock %}
+  <div class="caliopen-layout">
+    <header class="caliopen-layout__header">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              <img class="caliopen-layout__header__navbar-img--brand" src="/app/assets/images/brand.png" alt="CaliOpen">
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+  </div>
 {% endblock %}

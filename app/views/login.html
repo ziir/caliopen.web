@@ -1,32 +1,49 @@
 {% extends "layout.html" %}
-    
+
 {% block content %}
-  {% if loggedOut %}
-    <center>
-      Sucessfully logged-out
-    </center>
-  {% endif %}
-  <center>
-    <form action="/auth/login" method="POST" name="login">
-      <p>
-      <label>
-        Enter your username: <br/>
-        <input type="text" name="username" placeholder="Username"/>
-      </label>
-      </p>
+  <section role="main" class="container-fluid caliopen-layout__main-container">
+    <div class="cor-login">
+      {% if loggedOut %}
+        <div class="alert alert-success" role="alert">
+          Sucessfully logged-out
+        </div>
+      {% endif %}
 
-      <p>
-      <label>
-        Enter your password: <br/>
-        <input type="password" name="password" placeholder="Password"/>
-      </label>
-      </p>
+      <form action="/auth/login" method="POST" name="login" accept-charset="utf-8" class="cor-login__form">
 
-      <p>
-        <button type="submit">
-          Log In
-        </button>
-      </p>
-    </form>
-  </center>
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          Sign In
+        </div>
+
+        <div class="panel-body">
+
+          {% if error %}
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{error}}
+          </div>
+          {% endif %}
+
+          <p class="form-group cor-login__form-row">
+            <label for="username" class="cor-login__label">
+              Username
+            </label>
+            <input type="text" name="username" placeholder="Username" class="form-control cor-login__form-input" />
+          </p>
+
+          <p class="form-group cor-login__form-row">
+            <label for="password"  class="cor-login__label">
+              Password
+            </label>
+            <input type="password" name="password" class="form-control cor-login__form-input" />
+          </p>
+
+          <input type="submit" class="btn btn-primary btn-lg btn-block cor-login__form-submit" value="Go" />
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
