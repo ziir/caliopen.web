@@ -13,7 +13,7 @@
     "start:watch": "DEBUG=caliopen.web:* NODE_ENV=development $(npm bin)/nodemon ./bin/start",
     "start:production": "NODE_ENV=production pm2 -i -1 start ./bin/start --name caliopen-web",
     "eslint": "$(npm bin)/eslint ./app",
-    "test": ".$(npm bin)/mocha --recursive",
+    "test": "$(npm bin)/mocha --recursive",
     "release": "node ./bin/build",
     "prerelease": "npm test"
   },
