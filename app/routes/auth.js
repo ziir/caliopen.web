@@ -14,34 +14,22 @@ router.get('/login', function loginPage(req, res, next) {
 });
 
 router.post('/login', function login(req, res, next) {
-  var config = req.config;
-
-  var auth = new Auth(config);
-
-  var errors = {
-    username: null,
-    password: null,
-    body: null
-  };
-
-  var values = {
-    username: null,
-    password: null
-  };
+  var auth = new Auth(req.config);
 
   if (!req.body || !objectKeys(req.body).length) {
-    errors.body = new Error('Bad request');
-    errors.body.status = 400;
+    var err = new Error('Bad request');
+    err.status = 400;
+
+    throw err;
   }
 
-  values.username = req.body.username;
-  values.password = req.body.password;
+  var values = {
+    username: req.body.username,
+    password: req.body.password
+  };
 
-  errors.username = !values.username;
-  errors.password = !values.errors;
-
-  if (errors.length) {
-    return res.render('login', { errors: errors, values: values });
+  if (!values.username || !values.password) {
+    return res.render('login', { error: 'Username or password invalid' });
   }
 
   auth.authenticate({
@@ -61,7 +49,7 @@ router.post('/login', function login(req, res, next) {
           if (err || !seal) {
             next(err || new Error('Unexpected Error'));
           }
-          res.cookie(config.cookie.name, sealed, config.cookie.options);
+          res.cookie(req.config.cookie.name, sealed, req.config.cookie.options);
         }
       );
     },
