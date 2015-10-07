@@ -1,5 +1,7 @@
 # Caliopen.Web
 
+[![Build Status](https://travis-ci.org/CaliOpen/caliopen.web.svg?branch=master)](https://travis-ci.org/CaliOpen/caliopen.web)
+
 [CaliOpen](https://caliopen.org)'s Web Server using Nodejs/Express.
 
 ## Prerequisites
@@ -17,7 +19,7 @@ You will need the following things properly installed on your computer.
 
 ## Running (Development)
 
-* `npm start` or `npm run start:watch` 
+* `npm start` or `npm run start:watch`
 * The webserver is available at [http://localhost:4000](http://localhost:4000).
 
 ### Running Tests
