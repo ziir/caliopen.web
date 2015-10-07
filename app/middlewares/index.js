@@ -6,6 +6,7 @@ module.exports = function makeMiddlewares(env) {
     'checkToken': require('./check-token'),
     'catchLoginErrors': require('./catch-login-errors'),
     '404': require('./404'),
-    'error': require('./error')(env)
+    'error': require('./error')(env),
+    'frontendRenderer': require('./frontend-renderer')
   };
-}
+};
