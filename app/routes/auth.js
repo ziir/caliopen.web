@@ -5,11 +5,11 @@ var Auth = require('../lib/Auth');
 
 var objectKeys = Object.keys || require('object-keys');
 
-router.get('/', function root(req, res, next) {
+router.get('/', function root(req, res) {
   res.redirect('/login');
 });
 
-router.get('/login', function loginPage(req, res, next) {
+router.get('/login', function loginPage(req, res) {
   res.render('login');
 });
 
@@ -61,16 +61,16 @@ router.post('/login', function login(req, res, next) {
   });
 });
 
-router.get('/logout', function logout(req, res, next) {
+router.get('/logout', function logout(req, res) {
   res.clearCookie(req.config.cookie.name);
   res.render('login', { loggedOut: true });
 });
 
-router.get('/recover-password', function recoverPasswordPage(req, res, next) {
+router.get('/recover-password', function recoverPasswordPage(req, res) {
   res.render('test');
 });
 
-router.post('/recover-password', function recoverPassword(req, res, next) {
+router.post('/recover-password', function recoverPassword(req, res) {
   res.render('test');
 });
 

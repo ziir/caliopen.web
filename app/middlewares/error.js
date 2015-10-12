@@ -1,5 +1,5 @@
 function makeErrorMiddleware(env) {
-  return function errorMiddleware(err, req, res, next) {
+  return function errorMiddleware(err, req, res) {
     err.status = err.status || 500;
     res.status(err.status);
 
