@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% for link in head.cssFiles %}
-    <link rel="stylesheet" type="text/css" href="{{ '/app/assets/' + link}}" />
+    <link rel="stylesheet" type="text/css" href="{{ '/app/' + link}}" />
     {% endfor %}
     {% block head %}{% endblock %}
   </head>

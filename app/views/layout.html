@@ -9,7 +9,11 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="/">
-              <img class="caliopen-layout__header__navbar-img--brand" src="/app/assets/images/brand.png" alt="CaliOpen">
+              {% if body.brandImage %}
+                <img class="caliopen-layout__header__navbar-img--brand" src="{{ '/app/' + body.brandImage }}" alt="CaliOpen">
+              {% else %}
+                CaliOpen
+              {% endif %}
             </a>
           </div>
         </div>
