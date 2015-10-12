@@ -21,7 +21,7 @@ function signup(params) {
 }
 
 function authenticate(params) {
-  if (!params || !(params.username && params.password)) {
+  if (!params || !(params.username && params.password)) {
     throw new Error(
       'Bad parameters: authenticate({' +
         'username, password, [response], [success], [error]' +
@@ -83,18 +83,21 @@ var Auth = function(config) {
     /* These defaults souldn't need be overidden */
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     hostname: this.config.api.hostname,
     port: this.config.api.port,
     method: 'POST',
 
     /* But you might want to override these */
-    response: function defaultResponseCallback(response) {},
-    success: function defaultSuccessCallback(user) {},
-    error: function defaultErrorCallback(error) {}
+    response: /* defaultResponseCallback(response) */
+      function defaultResponseCallback() {},
+    success: /* defaultSuccessCallback(user) */
+      function defaultSuccessCallback() {},
+    error: /* defaultErrorCallback(error) */
+     function defaultErrorCallback() {}
   };
-}
+};
 
 Auth.prototype.query = API.query;
 Auth.prototype.signup = signup;
