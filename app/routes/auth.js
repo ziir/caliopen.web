@@ -55,6 +55,10 @@ router.post('/login', function login(req, res, next) {
     },
     error: function errorCallback(error) {
       error = error || new Error('Bad gateway');
+      if (error.status && error.status === 400) {
+        return res.render('login', { error: 'Username or password invalid' });
+      }
+
       error.status = 502;
       next(error);
     }
