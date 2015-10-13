@@ -1,4 +1,5 @@
 var http = require('http');
+var concat = require('concat-stream');
 
 var ObjectAssign = Object.assign || require('object-assign');
 var debug = require('debug')('caliopen.web:app:api-query');
@@ -25,9 +26,9 @@ function query(params) {
 
     var data;
 
-    res.on('data', function dataCallback(data) {
-      data = data;
-    });
+    res.pipe(concat(function dataCallback(cdata) {
+      data = cdata;
+    }));
 
     res.on('end', function endCallback() {
       if (res && res.statusCode >= 200 && res.statusCode < 300) {
