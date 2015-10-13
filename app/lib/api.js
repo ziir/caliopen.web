@@ -1,6 +1,4 @@
 var http = require('http');
-var concat = require('concat-stream');
-
 var ObjectAssign = Object.assign || require('object-assign');
 var debug = require('debug')('caliopen.web:app:api-query');
 
@@ -24,21 +22,32 @@ function query(params) {
       res.headers
     );
 
-    var data;
+    var data = [];
 
-    res.pipe(concat(function dataCallback(cdata) {
-      data = cdata;
-    }));
+    res.on('data', function dataCallback(chunk) {
+      data.push(chunk);
+    });
 
     res.on('end', function endCallback() {
-      if (res && res.statusCode >= 200 && res.statusCode < 300) {
-        !options.success || options.success(data);
-      } else {
-        var error = new Error(
-          'API Query Error ' + res.statusCode + ' : ' + res.statusMessage
-        );
-        error.status = res.statusCode;
-        !options.error || options.error(error);
+      try {
+        var responseBody = Buffer.concat(data).toString();
+
+        if (res.headers['content-type'] && res.headers['content-type'].indexOf('json') !== -1) {
+          responseBody = JSON.parse(responseBody);
+        }
+
+        if (res && res.statusCode >= 200 && res.statusCode < 300) {
+          !options.success || options.success(responseBody);
+        } else {
+          var error = new Error(
+            'API Query Error ' + res.statusCode + ' : ' + res.statusMessage
+          );
+          error.status = res.statusCode;
+          throw error;
+        }
+      } catch (e) {
+        e.status = e.status || 500;
+        !options.error || options.error(e);
       }
     });
 

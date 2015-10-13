@@ -15,7 +15,7 @@ function checkToken(req, res, next) {
   // Or will expire in less than 10min
   if (
     new Date(Date.UTC(tokens['expires_at'])).getTime() <
-    new Date().now() + 1000 * 60 * 10
+    new Date().getTime() + 1000 * 60 * 10
   ) {
     var error = new Error('Expired token');
     error.status = 401;

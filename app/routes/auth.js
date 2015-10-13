@@ -6,10 +6,13 @@ var Auth = require('../lib/Auth');
 var objectKeys = Object.keys || require('object-keys');
 
 router.get('/', function root(req, res) {
-  res.redirect('/login');
+  res.redirect('login');
 });
 
 router.get('/login', function loginPage(req, res) {
+  if (req.tokens) {
+    return res.redirect(req.config.frontend.rootPath);
+  }
   res.render('login');
 });
 
@@ -42,6 +45,10 @@ router.post('/login', function login(req, res, next) {
       }
     },
     success: function successCallback(user) {
+      if (!user || !objectKeys(user).length) {
+        return next(new Error('Expected user to be defined and not empty in Auth API success callback'));
+      }
+
       seal.encode(
         user,
         req.config.seal.secret,
@@ -50,16 +57,18 @@ router.post('/login', function login(req, res, next) {
             next(err || new Error('Unexpected Error'));
           }
           res.cookie(req.config.cookie.name, sealed, req.config.cookie.options);
+          res.redirect(req.config.frontend.rootPath);
         }
       );
     },
     error: function errorCallback(error) {
       error = error || new Error('Bad gateway');
-      if (error.status && error.status === 400) {
+      if (error.status && error.status >= 400 && error.status < 500) {
+        res.status(error.status);
         return res.render('login', { error: 'Username or password invalid' });
       }
 
-      error.status = 502;
+      error.status = error.status || 502;
       next(error);
     }
   });
@@ -67,7 +76,8 @@ router.post('/login', function login(req, res, next) {
 
 router.get('/logout', function logout(req, res) {
   res.clearCookie(req.config.cookie.name);
-  res.render('login', { loggedOut: true });
+  //TODO render a temporary confirmation on next rendering
+  res.redirect('login');
 });
 
 router.get('/recover-password', function recoverPasswordPage(req, res) {

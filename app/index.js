@@ -53,9 +53,9 @@ app.use(['/api', '/auth'],
 
 app.use('/api', routes.api);
 
-app.use(['/auth/login', '/auth/signup'], middlewares.catchLoginErrors, middlewares.frontendRenderer);
+app.use(['/auth/login', '/auth/signup'], middlewares.catchLoginErrors);
 
-app.use('/auth', routes.auth);
+app.use('/auth', middlewares.frontendRenderer, routes.auth);
 
 // catch 404 and forward to error handler
 app.use(middlewares['404']);
