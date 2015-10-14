@@ -34,11 +34,11 @@ function query(params) {
       if (res && res.statusCode >= 200 && res.statusCode < 300) {
         !options.success || options.success(data);
       } else {
-        !options.error || options.error(
-          new Error(
-            'API Query Error ' + res.statusCode + ' : ' + res.statusMessage
-          )
+        var error = new Error(
+          'API Query Error ' + res.statusCode + ' : ' + res.statusMessage
         );
+        error.status = res.statusCode;
+        !options.error || options.error(error);
       }
     });
 
