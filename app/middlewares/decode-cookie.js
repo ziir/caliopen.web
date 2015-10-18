@@ -13,6 +13,8 @@ function decodeCookie(req, res, next) {
     } else {
       req.user = obj;
     }
+
+    return next();
   });
 }
 
