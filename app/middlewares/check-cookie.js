@@ -1,3 +1,5 @@
+'use strict';
+
 function checkCookie(req, res, next) {
   var cookie = req.cookies && req.cookies[req.config.cookie.name];
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var http = require('http');
 var ObjectAssign = Object.assign || require('object-assign');
 var debug = require('debug')('caliopen.web:app:api-query');
@@ -66,5 +68,5 @@ function query(params) {
 }
 
 module.exports = {
-  query: query
+  query: query,
 };

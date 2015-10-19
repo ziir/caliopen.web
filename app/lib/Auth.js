@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 
 var API = require('./api');
@@ -15,7 +17,7 @@ function signup(params) {
         config.api.prefix,
         config.api.version,
         config.api.user
-      )
+      ),
     }, params)
   );
 }
@@ -33,7 +35,7 @@ function authenticate(params) {
 
   params.body = {
     username: params.username + '',
-    password: params.password + ''
+    password: params.password + '',
   };
 
   delete params.username;
@@ -45,7 +47,7 @@ function authenticate(params) {
         config.api.prefix,
         config.api.version,
         config.api.auth
-      )
+      ),
     }, params)
   );
 }
@@ -60,12 +62,12 @@ function refreshAccessToken(params) {
         config.api.prefix,
         config.api.version,
         config.api.tokens
-      )
+      ),
     }, params)
   );
 }
 
-var Auth = function(config) {
+var Auth = function (config) {
   if (
     !(this instanceof Auth) ||
     !config ||
@@ -83,7 +85,7 @@ var Auth = function(config) {
     /* These defaults souldn't need be overidden */
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     hostname: this.config.api.hostname,
     port: this.config.api.port,
@@ -95,7 +97,7 @@ var Auth = function(config) {
     success: /* defaultSuccessCallback(user) */
       function defaultSuccessCallback() {},
     error: /* defaultErrorCallback(error) */
-     function defaultErrorCallback() {}
+     function defaultErrorCallback() {},
   };
 };
 

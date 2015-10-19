@@ -1,3 +1,5 @@
+'use strict';
+
 var cyphered = require('../lib/seal');
 
 function decodeCookie(req, res, next) {

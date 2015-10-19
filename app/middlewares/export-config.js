@@ -1,3 +1,5 @@
+'use strict';
+
 var config;
 
 function exportConfig(req, res, next) {

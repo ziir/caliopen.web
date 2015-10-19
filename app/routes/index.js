@@ -1,4 +1,6 @@
+'use strict';
+
 module.exports = {
   'auth': require('./auth'),
-  'api': require('./api')
+  'api': require('./api'),
 };

@@ -1,3 +1,5 @@
+'use strict';
+
 var path          = require('path');
 
 var express       = require('express');
@@ -22,7 +24,7 @@ app.set('view engine', 'html');
 nunjucks.configure(path.resolve(__dirname, 'views'), {
   autoescape: true,
   watch: (app.get('env') === 'development'),
-  express: app
+  express: app,
 });
 
 // FIXME: Use config

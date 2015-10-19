@@ -1,3 +1,5 @@
+'use strict';
+
 var Iron = require('iron');
 
 function encode(obj, secret, callback) {
@@ -10,5 +12,5 @@ function decode(seal, secret, callback) {
 
 module.exports = {
   encode: encode,
-  decode: decode
+  decode: decode,
 };
