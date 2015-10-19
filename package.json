@@ -12,7 +12,7 @@
     "start": "DEBUG=caliopen.web:* NODE_ENV=development node ./bin/start",
     "start:watch": "DEBUG=caliopen.web:* NODE_ENV=development $(npm bin)/nodemon ./bin/start",
     "start:production": "NODE_ENV=production pm2 -i -1 start ./bin/start --name caliopen-web",
-    "eslint": "$(npm bin)/eslint ./app",
+    "lint": "$(npm bin)/eslint ./app",
     "test": "$(npm bin)/mocha --recursive",
     "release": "node ./bin/build",
     "prerelease": "npm test"
@@ -36,7 +36,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
-    "eslint": "^1.2.1",
+    "eslint": "^1.7.1",
     "mocha": "^2.2.5",
     "nodemon": "^1.7.1"
   }
