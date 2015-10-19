@@ -1,3 +1,5 @@
+'use strict';
+
 var router = require('express').Router();
 
 var seal = require('../lib/seal');
@@ -28,7 +30,7 @@ router.post('/login', function login(req, res, next) {
 
   var values = {
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
   };
 
   if (!values.username || !values.password) {
@@ -70,7 +72,7 @@ router.post('/login', function login(req, res, next) {
 
       error.status = error.status || 502;
       next(error);
-    }
+    },
   });
 });
 

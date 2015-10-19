@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var YAML = require('yamljs');
 var frontendConfig = require('./frontend');

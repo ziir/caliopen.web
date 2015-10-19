@@ -1,3 +1,5 @@
+'use strict';
+
 function makeErrorMiddleware(env) {
   return function errorMiddleware(err, req, res) {
     err.status = err.status || 500;
@@ -9,7 +11,7 @@ function makeErrorMiddleware(env) {
       status: err.status,
       message: err.message,
       error: isDev ? err : {},
-      stack: isDev ? err.stack : ''
+      stack: isDev ? err.stack : '',
     };
 
     if (req.accepts('html')) {

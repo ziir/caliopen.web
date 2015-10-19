@@ -1,5 +1,7 @@
+'use strict';
+
 var router = require('express').Router();
 
-router.get('/', function() {});
+router.get('/', function () {});
 
 module.exports = router;

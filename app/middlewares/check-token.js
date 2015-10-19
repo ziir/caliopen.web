@@ -1,3 +1,5 @@
+'use strict';
+
 function checkToken(req, res, next) {
   var user = req.user;
   var tokens = user.tokens;

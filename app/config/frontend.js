@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var fs = require('fs');
 
@@ -8,7 +10,7 @@ function readdirAndFilter(path, filterCallback) {
 
   try {
     files = fs.readdirSync(path);
-  } catch(err) {
+  } catch (err) {
     debug(
       'Frontend directory is not available. Style Sheets and brand logo will not be loaded.'
     );
@@ -16,8 +18,8 @@ function readdirAndFilter(path, filterCallback) {
   }
 
   var filenames = [];
-  files.forEach(function(filename) {
-    if(filterCallback(filename)) {
+  files.forEach(function (filename) {
+    if (filterCallback(filename)) {
       filenames.push(filename);
     }
   });
@@ -31,19 +33,19 @@ module.exports = function frontendConfig(config) {
   );
 
   //css
-  readdirAndFilter(staticFrontendPath, function(filename) {
+  readdirAndFilter(staticFrontendPath, function (filename) {
     return (
       filename.indexOf('caliopen-frontend') === 0 &&
       filename.indexOf('.css') !== -1 ||
       filename.indexOf('vendor') === 0 &&
       filename.indexOf('.css') !== -1
     );
-  }).forEach(function(filename) {
+  }).forEach(function (filename) {
     config.frontend.cssFiles.push('assets/' + filename);
   });
 
   //brand
-  var brandImage = readdirAndFilter(path.resolve(staticFrontendPath, 'images'), function(filename) {
+  var brandImage = readdirAndFilter(path.resolve(staticFrontendPath, 'images'), function (filename) {
     return filename.indexOf('brand') === 0 && filename.indexOf('.png') !== -1;
   }).shift();
 

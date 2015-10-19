@@ -1,3 +1,5 @@
+'use strict';
+
 function error404Middleware(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
