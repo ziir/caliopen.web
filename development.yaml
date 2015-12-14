@@ -2,8 +2,10 @@
 env: development
 frontend:
   rootPath: "/app/"
-  path: ../frontend
-  cssFiles: []
+  path: "/srv/caliopen/web-client-ng"
+  cssFiles:
+    - css/main.css
+  brandImage: images/brand.png
 api:
   prefix: /api
   version: v1
