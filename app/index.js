@@ -27,17 +27,6 @@ nunjucks.configure(path.resolve(__dirname, 'views'), {
   express: app,
 });
 
-// FIXME: Use config
-// Serve frontend app from caliopen/frontend/dist
-var staticAppPath = path.resolve(__dirname, '..', '..', 'frontend', 'dist');
-// FIXME: Use config
-debug(
-	'Registering static frontend app at ',
-	staticAppPath,
-	'to be served under /app'
-);
-app.use('/app', express.static(staticAppPath));
-
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -46,6 +35,16 @@ app.use(middlewares.exportConfig);
 app.get('/', function redirectToLogin(req, res) {
   res.redirect('/auth/login');
 });
+
+// FIXME: Use config
+// Serve frontend app from caliopen/frontend/dist
+var staticAppPath = '/srv/caliopen/web-client-ng';
+app.use('/app', express.static(staticAppPath));
+debug(
+  'Registering static frontend app at ',
+  staticAppPath,
+  'to be served under /app'
+);
 
 app.use(['/api', '/auth'],
   middlewares.checkCookie,
