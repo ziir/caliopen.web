@@ -5,10 +5,11 @@ frontend:
   path: "/srv/caliopen/web-client-ng"
   cssFiles:
     - css/main.css
+  brandImage: images/brand.png
 api:
   prefix: /api
   version: v1
-  hostname: localhost
+  hostname: api.dev.caliopen.org
   port: 6543
   auth: authentications
   user: user
