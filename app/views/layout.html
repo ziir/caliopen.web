@@ -3,14 +3,14 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-  <div class="caliopen-layout">
-    <header class="caliopen-layout__header">
+  <div class="co-layout">
+    <header class="co-layout__header">
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="/">
               {% if body.brandImage %}
-                <img class="caliopen-layout__header__navbar-img--brand" src="{{ '/app/' + body.brandImage }}" alt="CaliOpen">
+                <img class="co-layout__header__navbar-img--brand" src="{{ '/app/' + body.brandImage }}" alt="CaliOpen">
               {% else %}
                 CaliOpen
               {% endif %}
