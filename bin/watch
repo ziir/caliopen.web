@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# This is the project root.
+declare DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+cd $DIR
+
+# Log a message.
+function log {
+    echo -e " \033[32m*\033[0m ${1}"
+}
+# write an error message.
+function error {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+#
+# Utilities to check core dependencies
+#
+function check_npm_installed {
+    # Taken from http://stackoverflow.com/a/677212
+    command -v npm >/dev/null 2>&1 || { error "Node and npm are required" ; exit 1; }
+}
+
+function check_deps {
+    check_npm_installed
+}
+
+function install_npm {
+    log "Install npm dependencies"
+    npm install
+}
+
+function build_watch {
+    log "Build frontend code for dev env"
+    npm run start:watch
+}
+
+function install {
+    check_deps
+    install_npm
+    build_watch
+}
+
+install
+
+if [ $? -eq 0 ] ; then
+    log "Everything went fine."
+else
+    error "An error append, please check command output for more information."
+fi
