@@ -9,9 +9,9 @@
   "author": "Caliopen",
   "private": false,
   "scripts": {
-    "start": "DEBUG=caliopen.web:* NODE_ENV=development node ./bin/start",
-    "start:watch": "DEBUG=caliopen.web:* NODE_ENV=development nodemon ./bin/start",
-    "start:production": "NODE_ENV=production pm2 -i -1 start ./bin/start --name caliopen-web",
+    "start": "DEBUG=caliopen.web:* NODE_ENV=development node ./bin/server",
+    "start:watch": "DEBUG=caliopen.web:* NODE_ENV=development nodemon ./bin/server",
+    "start:production": "NODE_ENV=production pm2 -i -1 start ./bin/server --name caliopen-web",
     "lint": "eslint ./app",
     "test": "mocha --recursive",
     "release": "node ./bin/build",

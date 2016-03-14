@@ -1,99 +1,14 @@
-#!/usr/bin/env node
+#!/usr/bin/env bash
 
-/**
- * Module dependencies.
- */
-
-var app = require('../app');
-var debug = require('debug')('caliopen.web:server');
-var http = require('http');
-
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '4000');
-app.set('port', port);
-
-/**
- * Get environment and set it in Express.
- */
-
-var environment =
-  (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase()) || 'development';
-
-app.set('env', environment);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
+# Log a message.
+function log {
+    echo -e " \033[32m*\033[0m ${1}"
+}
+# write an error message.
+function error {
+    echo -e "\033[31m${1}\033[0m"
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
+log "caliopen.web container is built."
 
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
+npm run start
