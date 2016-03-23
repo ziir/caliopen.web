@@ -90,11 +90,4 @@ router.post('/recover-password', function recoverPassword(req, res) {
   res.render('test');
 });
 
-router.get('/user-info', function userInfo(req, res) {
-  res.json({
-    user_id: req.user.user_id,
-    username: req.user.username,
-  });
-});
-
 module.exports = router;
