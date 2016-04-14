@@ -14,7 +14,6 @@ var app           = express();
 var middlewares   = require('./middlewares')(app.get('env'));
 var routes        = require('./routes');
 
-
 app.use(logger('dev'));
 
 // view engine setup
@@ -27,9 +26,6 @@ nunjucks.configure(path.resolve(__dirname, 'views'), {
   express: app,
 });
 
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(middlewares.exportConfig);
 
 app.get('/', function redirectToLogin(req, res) {
@@ -46,7 +42,10 @@ debug(
   'to be served under /app'
 );
 
+app.use('/auth', bodyParser.urlencoded({ extended: false }));
+
 app.use(['/api', '/auth'],
+  cookieParser(),
   middlewares.checkCookie,
   middlewares.decodeCookie,
   middlewares.checkToken
