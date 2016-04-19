@@ -1,49 +1,49 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <section role="main" class="container-fluid">
-    <div class="cor-login">
+  <section role="main">
+    <div class="s-login">
       {% if loggedOut %}
-        <div class="alert alert-success" role="alert">
+        <div class="callout success" role="alert">
           Sucessfully logged-out
         </div>
       {% endif %}
 
-      <form action="/auth/login" method="POST" name="login" accept-charset="utf-8" class="cor-login__form">
-
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          Sign In
-        </div>
-
-        <div class="panel-body">
-
-          {% if error %}
-          <div class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-            {{error}}
+      <form action="/auth/login" method="POST" name="login" accept-charset="utf-8" class="s-login__form">
+        <div class="m-panel">
+          <div class="m-panel__header">
+            <h3>Sign In</h3>
           </div>
-          {% endif %}
 
-          <p class="form-group cor-login__form-row">
-            <label for="username" class="cor-login__label">
-              Username
-            </label>
-            <input type="text" name="username" placeholder="Username" class="form-control cor-login__form-input" />
-          </p>
+          <div class="m-panel__content">
+            {% if error %}
+            <div class="callout alert" role="alert">
+              <span class="fa fa-exclamation-circle" aria-hidden="true"></span>
+              <span class="show-for-sr">Error:</span>
+              {{error}}
+            </div>
+            {% endif %}
 
-          <p class="form-group cor-login__form-row">
-            <label for="password"  class="cor-login__label">
-              Password
-            </label>
-            <input type="password" name="password" class="form-control cor-login__form-input" />
-          </p>
+            <p class="s-login__form-row">
+              <label for="username" class="s-login__label">
+                Username
+              </label>
+              <input type="text" name="username" id="username" placeholder="Username" class="s-login__form-input m-text-field m-text-field--light" />
+            </p>
 
-          <input type="submit" class="btn btn-primary btn-lg btn-block cor-login__form-submit" value="Go" />
+            <p class="s-login__form-row">
+              <label for="password"  class="s-login__label">
+                Password
+              </label>
+              <input type="password" name="password" id="password" class="s-login__form-input m-text-field m-text-field--light" />
+            </p>
+
+            <div class="s-login__submit-zone">
+              <input type="submit" class="s-login__form-submit button primary" value="Go" />
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 {% endblock %}

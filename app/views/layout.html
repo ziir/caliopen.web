@@ -3,21 +3,19 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-  <div class="co-layout">
-    <header class="co-layout__header">
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-              {% if body.brandImage %}
-                <img class="co-layout__header__navbar-img--brand" src="{{ '/app/' + body.brandImage }}" alt="CaliOpen">
-              {% else %}
-                CaliOpen
-              {% endif %}
-            </a>
-          </div>
-        </div>
-      </nav>
+  <div class="l-layout">
+    <header class="l-header">
+      <div class="l-header__wrapper">
+        <span class="l-header__brand">
+          <a href="/">
+            {% if body.brandImage %}
+              <img class="l-header__brand-icon" src="{{ '/app/' + body.brandImage }}" alt="CaliOpen">
+            {% else %}
+              CaliOpen
+            {% endif %}
+          </a>
+        </span>
+      </div>
     </header>
     {% block content %}
     {% endblock %}
